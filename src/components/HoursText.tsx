@@ -1,3 +1,5 @@
+import { FaCircle } from "react-icons/fa";
+
 type Hours = {
   title?: string;
   hours: Week;
@@ -111,25 +113,30 @@ const HoursText = ({ hours, timezone }: HoursTextProps) => {
   };
   const res = getDayName(hours, timezone);
   return (
-    <div className="hero  w-full">
-      <div className="hero-row flex">
-        <div
-          className={
-            res.status.includes("Open")
-              ? "text-green-600 Hero-hoursToday flex gap-1 items-center w-max "
-              : "text-red-600 Hero-hoursToday flex gap-1 items-center w-max "
-          }
-        >
-          <p className="">
+    <div className="w-full">
+      <div className="flex items-center gap-2 py-2">
+        <div className="flex gap-2 items-center">
+          <FaCircle
+            color={`${res.status.includes("Open") ? "green" : "red"}`}
+            className="h-2 w-2"
+          />
+          <span className="align-middle">
             {res.status.toLowerCase() === "open now"
-              ? "Open Now - "
+              ? "Open Now"
               : res.status.toLowerCase() === "closed"
-                ? "Closed  - "
+                ? "Closed"
                 : res.status.toLowerCase() === "closed perm"
                   ? "Closed Now"
                   : ""}
-          </p>
-          {res.status !== "Closed perm" && <p className="">{res.text}</p>}
+          </span>
+        </div>
+        <div className="flex gap-2 text-sm items-center">
+          {res.status !== "Closed perm" && (
+            <>
+              <FaCircle className="h-1 w-1" />
+              <div className="align-middle">{res.text}</div>
+            </>
+          )}
         </div>
       </div>
     </div>
