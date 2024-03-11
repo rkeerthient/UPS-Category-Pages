@@ -28,7 +28,7 @@ const GridItems = ({ items, shapeCTA = false }: any) => {
               </div>
               {item.cTA && (
                 <div
-                  className={`!mt-5 mx-auto ${shapeCTA && `w-full text-center`} pt-5`}
+                  className={`!mt-5 mx-auto ${shapeCTA && `w-full text-center pb-4 md:pb-4`} pt-5`}
                 >
                   <a
                     href={item.cTA.link}

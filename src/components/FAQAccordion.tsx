@@ -20,7 +20,7 @@ const FAQAccordion = ({ FAQs }: any) => {
       style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
     >
       <div className="mx-auto text-2xl pb-4">{faqGroupTitle}</div>
-      <div className={`border-t-2   border-b-2`}>
+      <div className={`border-t-2 md:border-b-2`}>
         {question1 && <FAQItem question={question1} answer={answer1} />}
         {question2 && (
           <>

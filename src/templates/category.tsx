@@ -177,10 +177,7 @@ const Category: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout>
-        <div
-          className="centered-container"
-          
-        >
+        <div className="centered-container">
           <div className="bg-white space-y-8">
             <div className="flex flex-col md:flex-row justify-between gap-4">
               <div className="w-full md:w-3/5">
@@ -194,7 +191,7 @@ const Category: Template<TemplateRenderProps> = ({
                     <h2 className="text-2xl ">The UPS Store {c_cityName}</h2>
                   </div>
                   <div
-                    className="p-4 md:p-8 bg-[#fafafa] text-[#333] text-base"
+                    className="p-4 pb-6 md:p-8 bg-[#fafafa] text-[#333] text-base"
                     style={{ boxShadow: "0 .125rem .375rem rgba(0,0,0,.15)" }}
                   >
                     <div>
@@ -234,7 +231,7 @@ const Category: Template<TemplateRenderProps> = ({
             <div className="flex flex-col md:flex-row justify-between gap-4 w-full  text-lg font-light">
               <div
                 className="w-full md:w-3/4 flex flex-col gap-4 bg-transparent md:bg-[#fafafa] p-4 md:p-8"
-                  style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
+                style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
               >
                 <div className="px-4 md:p-4">
                   <HoursText
@@ -243,10 +240,10 @@ const Category: Template<TemplateRenderProps> = ({
                   />
                 </div>
                 <div
-                  className=" bg-white flex flex-col md:flex-row md:justify-between gap-4 px-3  md:p-6"
-                  // style={{
-                  //   boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);",
-                  // }}
+                  className=" bg-white flex flex-col md:flex-row md:justify-between gap-4 px-3   md:p-6 py-3"
+                  style={{
+                    boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);",
+                  }}
                 >
                   <div className="w-full md:w-1/3 space-y-2">
                     <div className="flex gap-4 text-lg text-[#028198]">
@@ -402,25 +399,16 @@ const Category: Template<TemplateRenderProps> = ({
           </div>
         </div>
 
-        <div
-          className="bg-[#fafafa] p-2 md:p-10"
-          
-        >
+        <div className="bg-[#fafafa] p-2 md:p-10">
           <GridItems items={c_ourServices} />
         </div>
-        <div
-          className="bg-white p-2 md:p-10"
-          
-        >
+        <div className="bg-white p-2 md:p-10">
           <GridItems items={c_ourOffers} shapeCTA={true} />
         </div>
         <div className="bg-[#fafafa] ">
           <div className="centered-container">
             {c_defaultFAQGroup1 && (
-              <div
-                className="  md:p-10 w-full"
-                
-              >
+              <div className="  md:p-10 w-full">
                 <div className="text-4xl mx-auto text-center justify-center flex">
                   Frequently Asked Questions
                 </div>
