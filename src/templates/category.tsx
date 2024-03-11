@@ -200,14 +200,14 @@ const Category: Template<TemplateRenderProps> = ({
                         </div>
                       )}
                       {services && (
-                        <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] mt-4">
+                        <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] ">
                           {services.map((item: string, index: number) => (
                             <li key={index}>{item}</li>
                           ))}
                         </ul>
                       )}
                       {c_topTitle2 && (
-                        <h3 className="text-lg ">{c_topTitle2}</h3>
+                        <h3 className="text-lg my-2  font-medium">{c_topTitle2}</h3>
                       )}
                       {c_topDescription2 && (
                         <div>
@@ -219,7 +219,7 @@ const Category: Template<TemplateRenderProps> = ({
                         </div>
                       )}
                       {c_topCTA && (
-                        <div className="!mt-8 w-fit flex gap-4 justify-start">
+                        <div className="!mt-4 w-fit flex gap-4 justify-start">
                           <a
                             href={"#"}
                             className={`mx-auto  w-fit px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
@@ -263,7 +263,7 @@ const Category: Template<TemplateRenderProps> = ({
                     boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);",
                   }}
                 >
-                  <div className="w-full md:w-1/3 space-y-2">
+                  <div className="w-full md:w-1/3 space-y-4">
                     <div className="flex gap-4 text-lg text-[#028198]">
                       <IoMdPin className="mt-2 h-[22px] w-[23px]" />
                       <div>
@@ -284,7 +284,7 @@ const Category: Template<TemplateRenderProps> = ({
                       </div>
                     </div>
                   </div>
-                  <div className="w-full md:w-1/3 space-y-2">
+                  <div className="w-full md:w-1/3 space-y-4">
                     <div className="flex gap-4  w-full">
                       <FaPhone className="text-[#028198] h-[22px] md:w-[23px]" />
                       {linkedLocation.mainPhone &&
@@ -313,7 +313,7 @@ const Category: Template<TemplateRenderProps> = ({
                       </div>
                     )}
                   </div>
-                  <div className="w-full md:w-1/3 space-y-2 text-[#028198] font-bold ">
+                  <div className="w-full md:w-1/3 space-y-4 text-[#028198] font-bold ">
                     <div className="flex gap-4 items-center hover:underline hover:cursor-pointer">
                       <BiPackage className="h-[22px] w-[23px]" />
                       Estimate Shipping Cost
