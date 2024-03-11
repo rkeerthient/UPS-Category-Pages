@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 const MailingList = () => {
   return (
     <div className="w-full bg-[#ffd100] text-[#333] rounded p-10">
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0">
         <div className="flex flex-col gap-2 mr-14">
           <div className="text-2xl">Join Our Mailing List</div>
           <div className="text-lg">

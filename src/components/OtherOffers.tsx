@@ -14,7 +14,7 @@ const OtherOffers = () => {
           offerings?
         </div>
         <div className="w-24 border-t-4 border-[#ffd100] mx-auto"></div>
-        <div className="grid grid-cols-3 gap-8 mt-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-4 ">
           <div
             className="flex justify-center items-center h-56"
             style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}

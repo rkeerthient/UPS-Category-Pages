@@ -31,11 +31,13 @@ type HoursTextProps = {
 
 const HoursText = ({ hours, timezone }: HoursTextProps) => {
   const getStatus = (currentDay: any, currentTime: any, hours: any) => {
+    console.log(getTomorrow());
     if (hours[currentDay.toLowerCase()].isClosed)
       return {
         status: "Closed perm",
         text: `Closed`,
       };
+
     var startTime =
       (hours[currentDay.toLowerCase()].openIntervals[0].start.split(":")[0] ===
       "00"
@@ -124,7 +126,7 @@ const HoursText = ({ hours, timezone }: HoursTextProps) => {
               : res.status.toLowerCase() === "closed"
                 ? "Closed  - "
                 : res.status.toLowerCase() === "closed perm"
-                  ? "Closed"
+                  ? "Closed Now"
                   : ""}
           </p>
           {res.status !== "Closed perm" && <p className="">{res.text}</p>}

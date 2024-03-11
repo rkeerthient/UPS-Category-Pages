@@ -1,7 +1,12 @@
 const Header = () => {
   return (
     <>
-      <img src="https://i.imgur.com/XEn8ToZ.png" alt="" />
+      <div className="hidden md:visible">
+        <img src="https://i.imgur.com/XEn8ToZ.png" alt="" />
+      </div>
+      <div className="md:hidden visible">
+        <img src="https://i.imgur.com/Vkca1w2.png" alt="" />
+      </div>
     </>
   );
 };

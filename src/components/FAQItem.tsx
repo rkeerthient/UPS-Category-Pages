@@ -8,7 +8,7 @@ type FAQSProps = {
 
 const FAQItem = ({ question, answer }: FAQSProps) => {
   return (
-    <div className=" px-8 my-4">
+    <div className="px-1 md:px-8 my-4">
       <Disclosure className="">
         {({ open }) => (
           <>
