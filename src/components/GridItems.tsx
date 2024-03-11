@@ -1,9 +1,10 @@
 import { LexicalRichText } from "@yext/pages-components";
 import { BsChevronRight } from "react-icons/bs";
-import { SectionItem } from "../types/category_pages";
 import { Image } from "@yext/pages-components";
 const GridItems = ({ items, shapeCTA = false }: any) => {
-  const { sectionTitle, sectionItem } = items;
+  console.log(JSON.stringify(items));
+
+  const { sectionTitle, items: _items } = items;
   return (
     <div className="w-full space-y-8">
       <div className="text-4xl mx-auto text-center justify-center flex">
@@ -11,7 +12,7 @@ const GridItems = ({ items, shapeCTA = false }: any) => {
       </div>
       <div className="w-full md:w-28 border-t-2 border-[#ffd100] mx-auto"></div>
       <div className="grid grid-cols-1 md:grid-cols-3 w-full gap-4">
-        {sectionItem.map((item: SectionItem, index: number) => (
+        {_items.map((item: any, index: number) => (
           <div className=" px-3 py-5  text-[#333] flex flex-col" key={index}>
             {item.image && (
               <div className="w-full">

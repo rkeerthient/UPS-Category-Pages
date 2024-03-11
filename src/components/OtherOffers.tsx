@@ -13,7 +13,7 @@ const OtherOffers = () => {
           Didn't find what you were looking for or want to see our other
           offerings?
         </div>
-        <div className="w-24 border-t-4 border-[#ffd100] mx-auto"></div>
+        <div className="w-full md:w-28 border-t-2 border-[#ffd100] mx-auto"></div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-4 ">
           <div
             className="flex justify-center items-center h-56"

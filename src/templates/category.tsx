@@ -18,7 +18,7 @@ import {
   TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-import { getDirections } from "@yext/pages-components";
+import { LexicalRichText, getDirections } from "@yext/pages-components";
 import { BiPackage } from "react-icons/bi";
 import { FaEnvelope, FaFax, FaPhone } from "react-icons/fa";
 import { IoMdPin } from "react-icons/io";
@@ -35,7 +35,6 @@ import { Image } from "@yext/pages-components";
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
-  slugField: "c_slug",
   stream: {
     $id: "my-stream-id-1",
 
@@ -46,48 +45,25 @@ export const config: TemplateConfig = {
       "name",
       "c_cityName",
       "c_stateName",
-      "c_corporatePageHeaderSection",
-      "c_mainLocation.address",
-      "c_mainLocation.name",
-      "c_mainLocation.timezone",
-      "c_mainLocation.hours",
-      "c_mainLocation.c_dataFeedUPSAirPickupTimes",
-      "c_mainLocation.c_dataFeedUPSGroundPickupTimes",
-      "c_mainLocation.c_storeWebsiteURL",
-      "c_mainLocation.c_dLocationDirectionsOrCrossStreets",
-      "c_mainLocation.mainPhone",
-      "c_mainLocation.fax",
-      "c_mainLocation.emails",
-      "c_corporateMidPageSection",
-      "c_featuredServiceTitle",
-      "c_searchableFeaturedServices",
-      "c_corporateService1ImageAndCopy",
-      "c_corporateService2ImageAndCopy",
-      "c_corporateService3ImageAndCopy",
-      "c_corporateService4ImageAndCopy",
-      "c_corporateService5ImageAndCopy",
-      "c_corporateService6ImageAndCopy",
-      "c_specialOffers",
-      "c_defaultFAQGroup1",
-      "c_defaultFAQGroup2",
-      "c_defaultFAQGroup3",
-      "c_pageHeaderSection",
+      "linkedLocation.address",
+      "linkedLocation.name",
+      "linkedLocation.timezone",
+      "linkedLocation.hours",
+      "linkedLocation.mainPhone",
+      "linkedLocation.fax",
+      "linkedLocation.emails",
+      "linkedLocation.c_dLocationDirectionsOrCrossStreets",
+      "c_sectionTop",
+      "c_sectionMiddle",
       "slug",
-      "c_slug",
-      "c_corporateService1Link2",
-      "c_corporateService2Link2",
-      "c_corporateService3Link2",
-      "c_corporateService4Link2",
-      "c_corporateService5Link2",
-      "c_corporateService6Link2",
       "c_ourServices",
       "c_ourOffers",
-      "c_centerHomePageURL",
+      "c_fAQs",
+      "services",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityTypes: ["categoryPage"],
-      entityIds: ["1043-Printing", "1043-Notary"],
+      entityTypes: ["ce_categoryPages"],
     },
 
     // The entity language profiles that documents will be generated for.
@@ -160,20 +136,17 @@ const Category: Template<TemplateRenderProps> = ({
 }) => {
   const {
     _site,
-
+    slug,
     c_cityName,
-    c_corporatePageHeaderSection,
-    c_mainLocation,
-    c_corporateMidPageSection,
-
-    c_defaultFAQGroup1,
-    c_defaultFAQGroup2,
-    c_defaultFAQGroup3,
-    c_pageHeaderSection,
+    linkedLocation,
+    services,
     c_ourServices,
     c_ourOffers,
-    c_centerHomePageURL,
+    c_sectionTop,
+    c_sectionMiddle,
+    c_fAQs,
   } = document;
+  console.log(JSON.stringify(c_fAQs));
 
   return (
     <>
@@ -184,9 +157,7 @@ const Category: Template<TemplateRenderProps> = ({
               <div className="w-full md:w-3/5">
                 <div className="flex flex-col gap-4">
                   <div>
-                    <h1 className="text-4xl ">
-                      {c_corporatePageHeaderSection.pageTitle}
-                    </h1>
+                    <h1 className="text-4xl ">{c_sectionTop.title}</h1>
                   </div>
                   <div>
                     <h2 className="text-2xl ">The UPS Store {c_cityName}</h2>
@@ -197,15 +168,17 @@ const Category: Template<TemplateRenderProps> = ({
                   >
                     <div>
                       <div>
-                        {c_corporatePageHeaderSection.defaultIntroduction}
-                      </div>
-                      {c_pageHeaderSection && (
-                        <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] mt-4">
-                          {c_pageHeaderSection.serviceHighlights.map(
-                            (item: string, index: number) => (
-                              <li key={index}>{item}</li>
-                            )
+                        <LexicalRichText
+                          serializedAST={JSON.stringify(
+                            c_sectionTop.description.json
                           )}
+                        />
+                      </div>
+                      {services && (
+                        <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] mt-4">
+                          {services.map((item: string, index: number) => (
+                            <li key={index}>{item}</li>
+                          ))}
                         </ul>
                       )}
                       <div className="!mt-8">
@@ -213,7 +186,7 @@ const Category: Template<TemplateRenderProps> = ({
                           href={"#"}
                           className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
                         >
-                          {c_pageHeaderSection["pageHeaderButton1"]}
+                          {c_sectionTop.cTA1.label}
                         </a>
                       </div>
                     </div>
@@ -221,9 +194,7 @@ const Category: Template<TemplateRenderProps> = ({
                 </div>
               </div>
               <div className="w-full md:w-2/5">
-                <Image
-                  image={c_corporatePageHeaderSection.heroImageGallery[0]}
-                />
+                <Image image={c_sectionTop.image} />
               </div>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-4 w-full  text-lg font-light">
@@ -233,12 +204,12 @@ const Category: Template<TemplateRenderProps> = ({
               >
                 <div className="px-4 md:p-4">
                   <HoursText
-                    timezone={c_mainLocation[0].timezone}
-                    hours={c_mainLocation[0].hours}
+                    timezone={linkedLocation.timezone}
+                    hours={linkedLocation.hours}
                   />
                 </div>
                 <div
-                  className=" bg-white flex flex-col md:flex-row md:justify-between gap-4 px-3   md:p-6 py-3"
+                  className="text-sm bg-white flex flex-col md:flex-row md:justify-between gap-4 px-3   md:p-6 py-3"
                   style={{
                     boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);",
                   }}
@@ -248,21 +219,18 @@ const Category: Template<TemplateRenderProps> = ({
                       <IoMdPin className="mt-2 h-[22px] w-[23px]" />
                       <div>
                         <a
-                          className=" hover:underline"
-                          href={getDirections(c_mainLocation[0].address)}
+                          className=" hover:underline text-base"
+                          href={getDirections(linkedLocation.address)}
                         >
-                          <div>{c_mainLocation[0].address.line1}</div>
+                          <div>{linkedLocation.address.line1}</div>
                           <div>
-                            {c_mainLocation[0].address.city},{" "}
-                            {c_mainLocation[0].address.region}{" "}
-                            {c_mainLocation[0].address.postalCode}
+                            {linkedLocation.address.city},{" "}
+                            {linkedLocation.address.region}{" "}
+                            {linkedLocation.address.postalCode}
                           </div>
                         </a>
-                        <div className="text-[#333]">
-                          {
-                            c_mainLocation[0]
-                              .c_dLocationDirectionsOrCrossStreets
-                          }
+                        <div className="text-[#333] text-sm mt-4">
+                          {linkedLocation.c_dLocationDirectionsOrCrossStreets}
                         </div>
                       </div>
                     </div>
@@ -270,28 +238,28 @@ const Category: Template<TemplateRenderProps> = ({
                   <div className="w-full md:w-1/3 space-y-2">
                     <div className="flex gap-4  w-full">
                       <FaPhone className="text-[#028198] h-[22px] md:w-[23px]" />
-                      {c_mainLocation[0].mainPhone &&
-                        c_mainLocation[0].mainPhone
+                      {linkedLocation.mainPhone &&
+                        linkedLocation.mainPhone
                           .replace("+1", "")
                           .replace(/\D+/g, "")
                           .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}
                     </div>
                     <div className="flex gap-4 items-center  w-full">
                       <FaFax className="text-[#028198] h-[22px] md:w-[23px]" />
-                      {c_mainLocation[0].fax &&
-                        c_mainLocation[0].fax
+                      {linkedLocation.fax &&
+                        linkedLocation.fax
                           .replace("+1", "")
                           .replace(/\D+/g, "")
                           .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3")}
                     </div>
-                    {c_mainLocation[0].emails && (
+                    {linkedLocation.emails && (
                       <div className="flex  w-full gap-4 items-center font-bold text-[#028198]">
                         <FaEnvelope className="h-[22px] md:w-[23px] " />
                         <a
                           className="underline hover:no-underline	"
-                          href={`mailto:${c_mainLocation[0].emails[0]}`}
+                          href={`mailto:${linkedLocation.emails[0]}`}
                         >
-                          {c_mainLocation[0].emails[0]}
+                          {linkedLocation.emails[0]}
                         </a>
                       </div>
                     )}
@@ -309,7 +277,7 @@ const Category: Template<TemplateRenderProps> = ({
                 <div className="flex flex-col md:flex-row gap-8 my-4 md:my-0">
                   <div className="md:!mt-4">
                     <a
-                      href={c_centerHomePageURL}
+                      href={`/${slug}`}
                       className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
                     >
                       Store Home Page
@@ -375,21 +343,25 @@ const Category: Template<TemplateRenderProps> = ({
                 </div>
               </div>
             </div>
-            {c_corporateMidPageSection && (
+            {c_sectionMiddle && (
               <div className="w-full text-[#333]">
                 <div className="w-full flex flex-col md:flex-row gap-8 py-10 items-center">
                   <div className="w-full md:w-[26.6875rem]">
-                    <Image
-                      image={c_corporateMidPageSection["mid-pageFeaturedImage"]}
-                    ></Image>
+                    <Image image={c_sectionMiddle.image}></Image>
                   </div>
                   <div className="flex flex-col w-full md:w-3/5 gap-2 md:pl-10">
                     <div className="text-4xl font-normal">
-                      {c_corporateMidPageSection.sectionTitle}
+                      {c_sectionMiddle.title}
                     </div>
                     <div>
-                      <div>{c_corporateMidPageSection.details1}</div>
-                      {c_corporateMidPageSection.serviceHighlights && (
+                      <div>
+                        <LexicalRichText
+                          serializedAST={JSON.stringify(
+                            c_sectionMiddle.description.json
+                          )}
+                        />
+                      </div>
+                      {/* {c_corporateMidPageSection.serviceHighlights && (
                         <ul className="md:columns-2 space-y-1 list-disc	pl-8 marker:text-[#028198] mt-4">
                           {c_corporateMidPageSection.serviceHighlights.map(
                             (item: string, index: number) => (
@@ -397,24 +369,24 @@ const Category: Template<TemplateRenderProps> = ({
                             )
                           )}
                         </ul>
-                      )}
+                      )} */}
                     </div>
-                    <div className="text-2xl">
-                      {c_corporateMidPageSection.boldTextAboveButtons}
-                    </div>
+                    <div className="text-2xl">{c_sectionMiddle.subtitle}</div>
                     <div>
-                      {c_corporateMidPageSection.smallerTextAboveButtons}
+                      <LexicalRichText
+                        serializedAST={JSON.stringify(
+                          c_sectionMiddle.subDescription.json
+                        )}
+                      />
                     </div>
-                    {c_corporateMidPageSection["mid-pageButton2"] && (
-                      <div className="!mt-8">
-                        <a
-                          href={"#"}
-                          className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
-                        >
-                          {c_corporateMidPageSection["mid-pageButton2"]}
-                        </a>
-                      </div>
-                    )}
+                    <div className="!mt-8">
+                      <a
+                        href={"#"}
+                        className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
+                      >
+                        {c_sectionMiddle.cTA1.label}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -422,30 +394,28 @@ const Category: Template<TemplateRenderProps> = ({
           </div>
         </div>
 
-        <div className="bg-[#fafafa] p-2 md:p-10">
-          <GridItems items={c_ourServices} />
-        </div>
-        <div className="bg-white p-2 md:p-10">
-          <GridItems items={c_ourOffers} shapeCTA={true} />
-        </div>
+        {c_ourServices && (
+          <div className="bg-[#fafafa] p-2 md:p-10">
+            <GridItems items={c_ourServices} />
+          </div>
+        )}
+        {c_ourOffers && (
+          <div className="bg-white p-2 md:p-10">
+            <GridItems items={c_ourOffers} shapeCTA={true} />
+          </div>
+        )}
         <div className="bg-[#fafafa] ">
           <div className="centered-container">
-            {c_defaultFAQGroup1 && (
+            {c_fAQs && (
               <div className="  md:p-10 w-full">
-                <div className="text-4xl mx-auto text-center justify-center flex">
+                <div className="text-4xl mx-auto text-center justify-center flex mb-8">
                   Frequently Asked Questions
                 </div>
-                <div className="w-28 border-t-2 border-[#ffd100] mx-auto"></div>
+                <div className="w-full md:w-28 border-t-2 border-[#ffd100] mx-auto"></div>
                 <div className="flex flex-col gap-8">
-                  {c_defaultFAQGroup1 && (
-                    <FAQAccordion FAQs={c_defaultFAQGroup1} />
-                  )}
-                  {c_defaultFAQGroup2 && (
-                    <FAQAccordion FAQs={c_defaultFAQGroup2} />
-                  )}
-                  {c_defaultFAQGroup3 && (
-                    <FAQAccordion FAQs={c_defaultFAQGroup3} />
-                  )}
+                  {c_fAQs.map((item: any, index: any) => (
+                    <FAQAccordion key={index} FAQs={item} />
+                  ))}
                 </div>
               </div>
             )}
