@@ -33,8 +33,7 @@ type HoursTextProps = {
 
 const HoursText = ({ hours, timezone }: HoursTextProps) => {
   const getStatus = (currentDay: any, currentTime: any, hours: any) => {
-    console.log(getTomorrow());
-    if (hours[currentDay.toLowerCase()].isClosed)
+     if (hours[currentDay.toLowerCase()].isClosed)
       return {
         status: "Closed perm",
         text: `Closed`,

@@ -207,7 +207,9 @@ const Category: Template<TemplateRenderProps> = ({
                         </ul>
                       )}
                       {c_topTitle2 && (
-                        <h3 className="text-lg my-2  font-medium">{c_topTitle2}</h3>
+                        <h3 className="text-lg my-2  font-medium">
+                          {c_topTitle2}
+                        </h3>
                       )}
                       {c_topDescription2 && (
                         <div>
