@@ -183,14 +183,16 @@ const Category: Template<TemplateRenderProps> = ({
                           ))}
                         </ul>
                       )}
-                      <div className="!mt-8">
-                        <a
-                          href={"#"}
-                          className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
-                        >
-                          {c_sectionTop.cTA1.label}
-                        </a>
-                      </div>
+                      {c_sectionTop.cTA1 && (
+                        <div className="!mt-8">
+                          <a
+                            href={"#"}
+                            className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
+                          >
+                            {c_sectionTop.cTA1.label}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -385,14 +387,16 @@ const Category: Template<TemplateRenderProps> = ({
                         />
                       )}
                     </div>
-                    <div className="!mt-8">
-                      <a
-                        href={"#"}
-                        className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
-                      >
-                        {c_sectionMiddle.cTA1.label}
-                      </a>
-                    </div>
+                    {c_sectionMiddle.cTA1 && (
+                      <div className="!mt-8">
+                        <a
+                          href={"#"}
+                          className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
+                        >
+                          {c_sectionMiddle.cTA1.label}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
