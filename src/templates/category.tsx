@@ -335,15 +335,30 @@ const Category: Template<TemplateRenderProps> = ({
                 <div className="space-y-8">
                   <div>
                     <div className="font-bold">Store Hours</div>
-                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
+                    <div>
+                      <HoursText
+                        hours={c_mainLocation.hours}
+                        timezone={c_mainLocation.timezone}
+                      />
+                    </div>
                   </div>
                   <div>
                     <div className="font-bold">Store Hours</div>
-                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
+                    <div>
+                      <HoursText
+                        hours={c_mainLocation.c_dataFeedUPSAirPickupTimes}
+                        timezone={c_mainLocation.timezone}
+                      />
+                    </div>
                   </div>
                   <div>
                     <div className="font-bold">Store Hours</div>
-                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
+                    <div>
+                      <HoursText
+                        hours={c_mainLocation.c_dataFeedUPSGroundPickupTimes}
+                        timezone={c_mainLocation.timezone}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
