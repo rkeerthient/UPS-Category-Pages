@@ -332,7 +332,7 @@ const Category: Template<TemplateRenderProps> = ({
                 style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
               >
                 <div className="pt-8">Hours of Operation</div>
-                <div className="space-y-8">
+                {/* <div className="space-y-8">
                   <div>
                     <div className="font-bold">Store Hours</div>
                     <div>
@@ -359,6 +359,20 @@ const Category: Template<TemplateRenderProps> = ({
                         timezone={c_mainLocation.timezone}
                       />
                     </div>
+                  </div>
+                </div> */}
+                <div className="space-y-8">
+                  <div>
+                    <div className="font-bold">Store Hours</div>
+                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
+                  </div>
+                  <div>
+                    <div className="font-bold">Store Hours</div>
+                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
+                  </div>
+                  <div>
+                    <div className="font-bold">Store Hours</div>
+                    <div>Closed Now - Open Tomorrow at 8:30 AM</div>
                   </div>
                 </div>
               </div>
