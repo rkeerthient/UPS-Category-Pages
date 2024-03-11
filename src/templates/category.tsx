@@ -86,7 +86,7 @@ export const config: TemplateConfig = {
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ["categoryPage"],
-      entityIds: ["1043-Printing"],
+      entityIds: ["1043-Printing", "1043-Notary"],
     },
 
     // The entity language profiles that documents will be generated for.
@@ -175,7 +175,7 @@ const Category: Template<TemplateRenderProps> = ({
     c_ourOffers,
     c_centerHomePageURL,
   } = document;
-  console.log(JSON.stringify(c_ourServices));
+  console.log(JSON.stringify(c_pageHeaderSection));
 
   return (
     <>
@@ -218,7 +218,7 @@ const Category: Template<TemplateRenderProps> = ({
                           href={"#"}
                           className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
                         >
-                          {c_corporateMidPageSection["mid-pageButton2"]}
+                          {c_pageHeaderSection["pageHeaderButton1"]}
                         </a>
                       </div>
                     </div>
@@ -356,8 +356,8 @@ const Category: Template<TemplateRenderProps> = ({
             </div>
             {c_corporateMidPageSection && (
               <div className="w-full text-[#333]">
-                <div className="w-full flex gap-8 py-10">
-                  <div className="w-2/6">
+                <div className="w-full flex gap-8 py-10 items-center">
+                  <div className="w-[26.6875rem]">
                     <img
                       src={
                         c_corporateMidPageSection["mid-pageFeaturedImage"].url
@@ -366,34 +366,38 @@ const Category: Template<TemplateRenderProps> = ({
                       className="w-full h-auto"
                     />
                   </div>
-                  <div className="space-y-4">
+                  <div className="flex flex-col w-3/5 gap-2 pl-10">
                     <div className="text-4xl font-normal">
                       {c_corporateMidPageSection.sectionTitle}
                     </div>
-                    <div>{c_corporateMidPageSection.details1}</div>
-                    {c_corporateMidPageSection.serviceHighlights && (
-                      <ul className="space-y-2 list-disc	pl-8 marker:text-[#028198]">
-                        {c_corporateMidPageSection.serviceHighlights.map(
-                          (item: string, index: any) => (
-                            <li key={index}>{item}</li>
-                          )
-                        )}
-                      </ul>
-                    )}
+                    <div>
+                      <div>{c_corporateMidPageSection.details1}</div>
+                      {c_corporateMidPageSection.serviceHighlights && (
+                        <ul className="columns-2 space-y-1 list-disc	pl-8 marker:text-[#028198] mt-4">
+                          {c_corporateMidPageSection.serviceHighlights.map(
+                            (item: string, index: number) => (
+                              <li key={index}>{item}</li>
+                            )
+                          )}
+                        </ul>
+                      )}
+                    </div>
                     <div className="text-2xl">
                       {c_corporateMidPageSection.boldTextAboveButtons}
                     </div>
                     <div>
                       {c_corporateMidPageSection.smallerTextAboveButtons}
                     </div>
-                    <div className="!mt-8">
-                      <a
-                        href={"#"}
-                        className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
-                      >
-                        {c_corporateMidPageSection["mid-pageButton2"]}
-                      </a>
-                    </div>
+                    {c_corporateMidPageSection["mid-pageButton2"] && (
+                      <div className="!mt-8">
+                        <a
+                          href={"#"}
+                          className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
+                        >
+                          {c_corporateMidPageSection["mid-pageButton2"]}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,10 +1,6 @@
-import { BsChevronRight } from "react-icons/bs";
-import {
-  C_ourOffers,
-  C_ourServices,
-  SectionItem,
-} from "../types/category_pages";
 import { LexicalRichText } from "@yext/pages-components";
+import { BsChevronRight } from "react-icons/bs";
+import { SectionItem } from "../types/category_pages";
 
 const GridItems = ({ items, shapeCTA = false }: any) => {
   const { sectionTitle, sectionItem } = items;
@@ -21,22 +17,22 @@ const GridItems = ({ items, shapeCTA = false }: any) => {
               <img src={item.image?.url} alt="" className="w-full" />
             </div>
             <div
-              className="p-8 flex-grow space-y-4"
+              className="p-8 flex-grow "
               style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
             >
               <h3 className="text-2xl font-normal ">{item.title}</h3>
-              <div>
+              <div className="pt-5">
                 <LexicalRichText
                   serializedAST={JSON.stringify(item.description.json)}
                 />
               </div>
               {item.cTA && (
                 <div
-                  className={`!mt-10 mx-auto ${shapeCTA && `w-full text-center`}`}
+                  className={`!mt-5 mx-auto ${shapeCTA && `w-full text-center`} pt-5`}
                 >
                   <a
                     href={item.cTA.link}
-                    className={`${shapeCTA ? `mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full` : `uppercase text-[#008198] hover:underline flex gap-1 items-center`}`}
+                    className={`${shapeCTA ? `mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full hover:underline` : `uppercase text-[#008198] hover:underline flex gap-1 items-center`}`}
                   >
                     {item.cTA.label} {!shapeCTA && <BsChevronRight />}
                   </a>

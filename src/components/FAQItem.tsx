@@ -12,7 +12,7 @@ const FAQItem = ({ question, answer }: FAQSProps) => {
       <Disclosure className="">
         {({ open }) => (
           <>
-            <Disclosure.Button className=" flex w-full gap-2 items-center text-left  text-lg font-bold  text-[#009cbd] justify-between ">
+            <Disclosure.Button className=" flex w-full gap-2 items-center text-left  text-[17px] font-bold  text-[#009cbd] justify-between ">
               <span>{question}</span>
               <FaChevronDown
                 className={`${open ? "rotate-180 transform" : ""} h-3 w-3 `}
@@ -26,7 +26,7 @@ const FAQItem = ({ question, answer }: FAQSProps) => {
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Disclosure.Panel className="mt-4 pr-6 text-sm">
+              <Disclosure.Panel className="mt-4 pr-6 text-[15px]">
                 {answer}
               </Disclosure.Panel>
             </Transition>
