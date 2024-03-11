@@ -167,13 +167,15 @@ const Category: Template<TemplateRenderProps> = ({
                     style={{ boxShadow: "0 .125rem .375rem rgba(0,0,0,.15)" }}
                   >
                     <div>
-                      <div>
-                        <LexicalRichText
-                          serializedAST={JSON.stringify(
-                            c_sectionTop.description.json
-                          )}
-                        />
-                      </div>
+                      {c_sectionTop.description && (
+                        <div>
+                          <LexicalRichText
+                            serializedAST={JSON.stringify(
+                              c_sectionTop.description.json
+                            )}
+                          />
+                        </div>
+                      )}
                       {services && (
                         <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] mt-4">
                           {services.map((item: string, index: number) => (
@@ -354,13 +356,15 @@ const Category: Template<TemplateRenderProps> = ({
                       {c_sectionMiddle.title}
                     </div>
                     <div>
-                      <div>
-                        <LexicalRichText
-                          serializedAST={JSON.stringify(
-                            c_sectionMiddle.description.json
-                          )}
-                        />
-                      </div>
+                      {c_sectionMiddle.description && (
+                        <div>
+                          <LexicalRichText
+                            serializedAST={JSON.stringify(
+                              c_sectionMiddle.description.json
+                            )}
+                          />
+                        </div>
+                      )}
                       {/* {c_corporateMidPageSection.serviceHighlights && (
                         <ul className="md:columns-2 space-y-1 list-disc	pl-8 marker:text-[#028198] mt-4">
                           {c_corporateMidPageSection.serviceHighlights.map(
@@ -373,11 +377,13 @@ const Category: Template<TemplateRenderProps> = ({
                     </div>
                     <div className="text-2xl">{c_sectionMiddle.subtitle}</div>
                     <div>
-                      <LexicalRichText
-                        serializedAST={JSON.stringify(
-                          c_sectionMiddle.subDescription.json
-                        )}
-                      />
+                      {c_sectionMiddle.subDescription && (
+                        <LexicalRichText
+                          serializedAST={JSON.stringify(
+                            c_sectionMiddle.subDescription.json
+                          )}
+                        />
+                      )}
                     </div>
                     <div className="!mt-8">
                       <a
