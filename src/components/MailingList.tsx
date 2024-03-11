@@ -28,29 +28,36 @@ const MailingList = () => {
           <div className="font-bold">Are you a small business owner?</div>
           <div className="flex gap-4 font-bold">
             <div>
-              <input type="radio" name="bus_owner" /> Yes
+              <input type="radio" id="bus_owner_yes" name="bus_owner" />
+              <label htmlFor="bus_owner_yes">Yes</label>
             </div>
             <div>
-              <input type="radio" name="bus_owner" /> No
+              <input type="radio" id="bus_owner_no" name="bus_owner" />
+              <label htmlFor="bus_owner_no">No</label>
             </div>
           </div>
+
           <div className="w-full  inline-block ">
             <div>
-              <input type="checkbox" name="" id="" /> I agree to the Terms &
-              Conditions
+              <input type="checkbox" name="" id="chkb" />
+              <label htmlFor="chkb">I agree to the Terms & Conditions</label>
             </div>
             <div className="mx-auto w-full  p-2">
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="flex w-full gap-2 items-center text-left text-sm font-medium  ">
+                    <Disclosure.Button
+                      className="flex w-full gap-2 items-center text-left text-sm font-medium focus:outline-none focus:ring"
+                      id="disclosure-button"
+                    >
                       <FaChevronDown
-                        className={`${
-                          open ? "rotate-180 transform" : ""
-                        } h-3 w-3 `}
+                        className={`h-3 w-3 ${open ? "rotate-180 transform" : ""}`}
+                        aria-hidden="true"
                       />
+                      <span>Show Details</span>
                     </Disclosure.Button>
                     <Transition
+                      show={open}
                       enter="transition duration-100 ease-out"
                       enterFrom="transform scale-95 opacity-0"
                       enterTo="transform scale-100 opacity-100"
@@ -58,16 +65,21 @@ const MailingList = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      {" "}
-                      <Disclosure.Panel className=" pb-2 pt-4 text-xs ">
+                      <Disclosure.Panel
+                        as="div"
+                        className="pb-2 pt-4 text-xs"
+                        id="disclosure-panel"
+                        static
+                      >
                         By signing up, you agree to receive emails from The UPS
-                        Store with news, special offers, promotions and messages
-                        tailored to your interests. You can unsubscribe at any
-                        time. See our privacy policy for more information.
-                        Retail locations are independently owned and operated by
-                        franchisees. Various offers may be available at certain
-                        participating locations only. Please contact your local
-                        The UPS Store retail location for more details.
+                        Store with news, special offers, promotions, and
+                        messages tailored to your interests. You can unsubscribe
+                        at any time. See our privacy policy for more
+                        information. Retail locations are independently owned
+                        and operated by franchisees. Various offers may be
+                        available at certain participating locations only.
+                        Please contact your local The UPS Store retail location
+                        for more details.
                       </Disclosure.Panel>
                     </Transition>
                   </>
