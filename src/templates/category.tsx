@@ -30,6 +30,7 @@ import MailingList from "../components/MailingList";
 import OtherOffers from "../components/OtherOffers";
 import PageLayout from "../components/page-layout";
 import "../index.css";
+import { Image } from "@yext/pages-components";
 /**
  * Required when Knowledge Graph data is used for a template.
  */
@@ -220,11 +221,8 @@ const Category: Template<TemplateRenderProps> = ({
                 </div>
               </div>
               <div className="w-full md:w-2/5">
-                <img
-                  src={
-                    c_corporatePageHeaderSection.heroImageGallery[0].image.url
-                  }
-                  alt=""
+                <Image
+                  image={c_corporatePageHeaderSection.heroImageGallery[0]}
                 />
               </div>
             </div>
@@ -381,13 +379,9 @@ const Category: Template<TemplateRenderProps> = ({
               <div className="w-full text-[#333]">
                 <div className="w-full flex flex-col md:flex-row gap-8 py-10 items-center">
                   <div className="w-full md:w-[26.6875rem]">
-                    <img
-                      src={
-                        c_corporateMidPageSection["mid-pageFeaturedImage"].url
-                      }
-                      alt=""
-                      className="w-full h-auto"
-                    />
+                    <Image
+                      image={c_corporateMidPageSection["mid-pageFeaturedImage"]}
+                    ></Image>
                   </div>
                   <div className="flex flex-col w-full md:w-3/5 gap-2 md:pl-10">
                     <div className="text-4xl font-normal">
