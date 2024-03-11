@@ -8,3 +8,16 @@ buildConfiguration:
       - .npmrc
 livePreviewConfiguration:
   setupCommand: ":"
+siteStream:
+  id: site-entity
+  source: knowledgeGraph
+  fields:
+    - c_deskHeader
+    - c_deskFooter
+    - c_mobHeader
+    - c_mobFooter
+  localization:
+    locales:
+      - en
+    primary: false
+  entityId: "4751852653873550003"

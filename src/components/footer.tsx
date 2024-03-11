@@ -1,11 +1,12 @@
-const Footer = () => {
+import { Image } from "@yext/pages-components";
+const Footer = ({ _site }: any) => {
   return (
     <>
-      <div className="md:visible hidden">
-        <img src="https://i.imgur.com/vnC4iDu.png" alt="" />
+      <div className="hidden md:block">
+        <Image image={_site.c_deskFooter}></Image>
       </div>
-      <div className="visible md:hidden">
-        <img src="https://i.imgur.com/deRBOWY.png" alt="" />
+      <div className="md:hidden block">
+        <Image image={_site.c_mobFooter}></Image>
       </div>
     </>
   );

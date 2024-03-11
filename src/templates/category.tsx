@@ -177,7 +177,7 @@ const Category: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <PageLayout>
+      <PageLayout _site={_site}>
         <div className="centered-container">
           <div className="bg-white space-y-8">
             <div className="flex flex-col md:flex-row justify-between gap-4">

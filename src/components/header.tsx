@@ -1,11 +1,12 @@
-const Header = () => {
+import { Image } from "@yext/pages-components";
+const Header = ({ _site }: any) => {
   return (
     <>
-      <div className="hidden md:visible">
-        <img src="https://i.imgur.com/XEn8ToZ.png" alt="" />
+      <div className="hidden md:block">
+        <Image image={_site.c_deskHeader}></Image>
       </div>
-      <div className="md:hidden visible">
-        <img src="https://i.imgur.com/Vkca1w2.png" alt="" />
+      <div className="md:hidden block">
+        <Image image={_site.c_mobHeader}></Image>
       </div>
     </>
   );
