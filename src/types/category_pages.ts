@@ -13,6 +13,19 @@ export interface C_fAQs {
 	fAQs?: FAQs[],
 }
 
+export enum LinkType {
+	OTHER = "Other",
+	URL = "URL",
+	PHONE = "Phone",
+	EMAIL = "Email",
+}
+
+export interface C_middleCTA {
+	label?: string,
+	linkType?: LinkType,
+	link?: string,
+}
+
 export interface ImageThumbnail {
 	url: string,
 	width: number,
@@ -25,13 +38,6 @@ export interface Image {
 	height: number,
 	thumbnails?: ImageThumbnail[],
 	alternateText?: string,
-}
-
-export enum LinkType {
-	OTHER = "Other",
-	URL = "URL",
-	PHONE = "Phone",
-	EMAIL = "Email",
 }
 
 export interface CTA {
@@ -89,6 +95,12 @@ export interface C_sectionTop {
 	cTA2?: CTA2,
 }
 
+export interface C_topCTA {
+	label?: string,
+	linkType?: LinkType,
+	link?: string,
+}
+
 export default interface Ce_categoryPages {
 	richTextDescriptionV2?: any,
 	slug?: string,
@@ -97,6 +109,12 @@ export default interface Ce_categoryPages {
 	c_centerNumber?: string,
 	c_cityName?: string,
 	c_fAQs?: C_fAQs[],
+	c_middleCTA?: C_middleCTA,
+	c_middleDescription?: any,
+	c_middleDescription2?: any,
+	c_middleImage?: Image,
+	c_middleTitle?: string,
+	c_middleTitle2?: string,
 	c_ourOffers?: C_ourOffers,
 	c_ourServices?: C_ourServices,
 	c_sectionMiddle?: C_sectionMiddle,
@@ -105,6 +123,12 @@ export default interface Ce_categoryPages {
 	c_slugAddress?: string,
 	c_stateName?: string,
 	c_storeAddress?: string,
+	c_topCTA?: C_topCTA,
+	c_topDescription?: any,
+	c_topDescription2?: any,
+	c_topImage?: Image,
+	c_topTitle?: string,
+	c_topTitle2?: string,
 	services?: string[],
 	id: string,
 }

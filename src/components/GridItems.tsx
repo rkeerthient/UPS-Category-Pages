@@ -2,8 +2,7 @@ import { LexicalRichText } from "@yext/pages-components";
 import { BsChevronRight } from "react-icons/bs";
 import { Image } from "@yext/pages-components";
 const GridItems = ({ items, shapeCTA = false }: any) => {
-  console.log(JSON.stringify(items));
-
+ 
   const { sectionTitle, items: _items } = items;
   return (
     <div className="w-full space-y-8">

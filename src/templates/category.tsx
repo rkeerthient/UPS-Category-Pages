@@ -53,13 +53,25 @@ export const config: TemplateConfig = {
       "linkedLocation.fax",
       "linkedLocation.emails",
       "linkedLocation.c_dLocationDirectionsOrCrossStreets",
-      "c_sectionTop",
-      "c_sectionMiddle",
       "slug",
       "c_ourServices",
       "c_ourOffers",
       "c_fAQs",
       "services",
+      "c_topCTA",
+      "c_topCTA2",
+      "c_topDescription",
+      "c_topDescription2",
+      "c_topImage",
+      "c_topTitle",
+      "c_topTitle2",
+      "c_middleCTA",
+      "c_middleCTA2",
+      "c_middleDescription",
+      "c_middleDescription2",
+      "c_middleImage",
+      "c_middleTitle",
+      "c_middleTitle2",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -137,16 +149,27 @@ const Category: Template<TemplateRenderProps> = ({
   const {
     _site,
     slug,
+    name,
     c_cityName,
     linkedLocation,
     services,
     c_ourServices,
     c_ourOffers,
-    c_sectionTop,
-    c_sectionMiddle,
     c_fAQs,
+    c_topCTA,
+    c_topCTA2,
+    c_topDescription,
+    c_topDescription2,
+    c_topImage,
+    c_topTitle2,
+    c_middleCTA,
+    c_middleCTA2,
+    c_middleDescription,
+    c_middleDescription2,
+    c_middleImage,
+    c_middleTitle,
+    c_middleTitle2,
   } = document;
-  console.log(JSON.stringify(c_fAQs));
 
   return (
     <>
@@ -157,7 +180,7 @@ const Category: Template<TemplateRenderProps> = ({
               <div className="w-full md:w-3/5">
                 <div className="flex flex-col gap-4">
                   <div>
-                    <h1 className="text-4xl ">{c_sectionTop.title}</h1>
+                    <h1 className="text-4xl ">{name}</h1>
                   </div>
                   <div>
                     <h2 className="text-2xl ">The UPS Store {c_cityName}</h2>
@@ -167,11 +190,11 @@ const Category: Template<TemplateRenderProps> = ({
                     style={{ boxShadow: "0 .125rem .375rem rgba(0,0,0,.15)" }}
                   >
                     <div>
-                      {c_sectionTop.description && (
+                      {c_topDescription && (
                         <div>
                           <LexicalRichText
                             serializedAST={JSON.stringify(
-                              c_sectionTop.description.json
+                              c_topDescription.json
                             )}
                           />
                         </div>
@@ -183,23 +206,45 @@ const Category: Template<TemplateRenderProps> = ({
                           ))}
                         </ul>
                       )}
-                      {c_sectionTop.cTA1 && (
-                        <div className="!mt-8">
+                      {c_topTitle2 && (
+                        <h3 className="text-lg ">{c_topTitle2}</h3>
+                      )}
+                      {c_topDescription2 && (
+                        <div>
+                          <LexicalRichText
+                            serializedAST={JSON.stringify(
+                              c_topDescription2.json
+                            )}
+                          />
+                        </div>
+                      )}
+                      {c_topCTA && (
+                        <div className="!mt-8 w-fit flex gap-4 justify-start">
                           <a
                             href={"#"}
-                            className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
+                            className={`mx-auto  w-fit px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
                           >
-                            {c_sectionTop.cTA1.label}
+                            {c_topCTA.label}
                           </a>
+                          {c_topCTA2 && (
+                            <a
+                              href={"#"}
+                              className={`mx-auto  w-fit px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
+                            >
+                              {c_topCTA2.label}
+                            </a>
+                          )}
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="w-full md:w-2/5">
-                <Image image={c_sectionTop.image} />
-              </div>
+              {c_topImage && (
+                <div className="w-full md:w-2/5">
+                  <Image image={c_topImage} />
+                </div>
+              )}
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-4 w-full  text-lg font-light">
               <div
@@ -302,35 +347,7 @@ const Category: Template<TemplateRenderProps> = ({
                 style={{ boxShadow: "0 0.125rem 0.375rem rgba(0,0,0,.15);" }}
               >
                 <div className="pt-8">Hours of Operation</div>
-                {/* <div className="space-y-8">
-                  <div>
-                    <div className="font-bold">Store Hours</div>
-                    <div>
-                      <HoursText
-                        hours={c_mainLocation.hours}
-                        timezone={c_mainLocation.timezone}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Store Hours</div>
-                    <div>
-                      <HoursText
-                        hours={c_mainLocation.c_dataFeedUPSAirPickupTimes}
-                        timezone={c_mainLocation.timezone}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Store Hours</div>
-                    <div>
-                      <HoursText
-                        hours={c_mainLocation.c_dataFeedUPSGroundPickupTimes}
-                        timezone={c_mainLocation.timezone}
-                      />
-                    </div>
-                  </div>
-                </div> */}
+
                 <div className="space-y-8">
                   <div>
                     <div className="font-bold">Store Hours</div>
@@ -347,54 +364,53 @@ const Category: Template<TemplateRenderProps> = ({
                 </div>
               </div>
             </div>
-            {c_sectionMiddle && (
+            {c_middleTitle && (
               <div className="w-full text-[#333]">
                 <div className="w-full flex flex-col md:flex-row gap-8 py-10 items-center">
-                  <div className="w-full md:w-[26.6875rem]">
-                    <Image image={c_sectionMiddle.image}></Image>
-                  </div>
-                  <div className="flex flex-col w-full md:w-3/5 gap-2 md:pl-10">
-                    <div className="text-4xl font-normal">
-                      {c_sectionMiddle.title}
+                  {c_middleImage && (
+                    <div className="w-full md:w-[26.6875rem]">
+                      <Image image={c_middleImage}></Image>
                     </div>
+                  )}
+                  <div className="flex flex-col w-full md:w-3/5 gap-2 md:pl-10">
+                    <div className="text-4xl font-normal">{c_middleTitle}</div>
                     <div>
-                      {c_sectionMiddle.description && (
+                      {c_middleDescription && (
                         <div>
                           <LexicalRichText
                             serializedAST={JSON.stringify(
-                              c_sectionMiddle.description.json
+                              c_middleDescription.json
                             )}
                           />
                         </div>
                       )}
-                      {/* {c_corporateMidPageSection.serviceHighlights && (
-                        <ul className="md:columns-2 space-y-1 list-disc	pl-8 marker:text-[#028198] mt-4">
-                          {c_corporateMidPageSection.serviceHighlights.map(
-                            (item: string, index: number) => (
-                              <li key={index}>{item}</li>
-                            )
-                          )}
-                        </ul>
-                      )} */}
                     </div>
-                    <div className="text-2xl">{c_sectionMiddle.subtitle}</div>
+                    <div className="text-2xl">{c_middleTitle2}</div>
                     <div>
-                      {c_sectionMiddle.subDescription && (
+                      {c_middleDescription2 && (
                         <LexicalRichText
                           serializedAST={JSON.stringify(
-                            c_sectionMiddle.subDescription.json
+                            c_middleDescription2.json
                           )}
                         />
                       )}
                     </div>
-                    {c_sectionMiddle.cTA1 && (
-                      <div className="!mt-8">
+                    {c_middleCTA && (
+                      <div className="!mt-8 w-fit flex gap-4">
                         <a
                           href={"#"}
-                          className={`mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
+                          className={`mx-auto  w-fit px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full`}
                         >
-                          {c_sectionMiddle.cTA1.label}
+                          {c_middleCTA.label}
                         </a>
+                        {c_middleCTA2 && (
+                          <a
+                            href={"#"}
+                            className={`mx-auto  w-fit px-8 py-4 text-white font-bold bg-[#009cbd] hover:bg-[#404040] rounded-full`}
+                          >
+                            {c_middleCTA2.label}
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
