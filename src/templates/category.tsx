@@ -244,7 +244,7 @@ const Category: Template<TemplateRenderProps> = ({
               </div>
               {c_topImage && (
                 <div className="w-full md:w-2/5">
-                  <Image image={c_topImage} loading="eager" />
+                  <Image image={c_topImage} />
                 </div>
               )}
             </div>
