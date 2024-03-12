@@ -2,7 +2,6 @@ import { LexicalRichText } from "@yext/pages-components";
 import { BsChevronRight } from "react-icons/bs";
 import { Image } from "@yext/pages-components";
 const GridItems = ({ items, shapeCTA = false }: any) => {
- 
   const { sectionTitle, items: _items } = items;
   return (
     <div className="w-full space-y-8">
@@ -33,7 +32,7 @@ const GridItems = ({ items, shapeCTA = false }: any) => {
                   className={`!mt-5 mx-auto ${shapeCTA && `w-full text-center pb-4 md:pb-4`} pt-5`}
                 >
                   <a
-                    href={item.cTA.link}
+                    href={item.cTA.link ? item.cTA.link : "#"}
                     className={`${shapeCTA ? `mx-auto  w-full px-8 py-4 text-white font-bold bg-[#518415] hover:bg-[#446e12] rounded-full hover:underline` : `uppercase text-[#008198] hover:underline flex gap-1 items-center`}`}
                   >
                     {item.cTA.label} {!shapeCTA && <BsChevronRight />}
