@@ -13,7 +13,7 @@ const Schema = (props: any) => {
   const name = `${document.name}`;
   const address = document.linkedLocation;
   const telephone = document.linkedLocation.mainPhone;
-  const description = document.decription;
+  const description = document.c_topDescription;
   const faqsList: any = [];
   const itemListElement: any = [];
   const offerCatalog: any = [];

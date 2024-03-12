@@ -196,7 +196,7 @@ const Category: Template<TemplateRenderProps> = ({
                     <div>
                       {c_topDescription && c_topDescription}
                       {services && (
-                        <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] ">
+                        <ul className="columns-2 mt-4 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] ">
                           {services.map((item: string, index: number) => (
                             <li key={index}>{item}</li>
                           ))}
