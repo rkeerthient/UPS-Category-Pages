@@ -31,6 +31,7 @@ import OtherOffers from "../components/OtherOffers";
 import PageLayout from "../components/page-layout";
 import "../index.css";
 import { Image } from "@yext/pages-components";
+import Schema from "../components/Schema";
 /**
  * Required when Knowledge Graph data is used for a template.
  */
@@ -146,6 +147,7 @@ const Category: Template<TemplateRenderProps> = ({
   path,
   document,
 }) => {
+  const cpy = document;
   const {
     _site,
     slug,
@@ -173,6 +175,7 @@ const Category: Template<TemplateRenderProps> = ({
 
   return (
     <>
+      <Schema document={cpy} />
       <PageLayout _site={_site}>
         <div className="centered-container">
           <div className="bg-white space-y-8">

@@ -1,67 +1,66 @@
-
 import { JsonLd } from "react-schemaorg";
-import { ClothingStore, FAQPage, Place, ItemList } from "schema-dts";
-import Product from "../types/products";
+import {
+  LocalBusiness,
+  FAQPage,
+  Place,
+  ItemList,
+  OfferCatalog,
+} from "schema-dts";
 const Schema = (props: any) => {
   const { document } = props;
-  const name = `${document.name} in ${document.address.city}, ${document.address.region}`;
-  const address = document.address;
-  const telephone = document.mainPhone;
+
+  const name = `${document.name}`;
+  const address = document.linkedLocation.address;
+  const telephone = document.linkedLocation.mainPhone;
   const description = document.decription;
   const faqsList: any = [];
-  const productsList: any = [];
   const itemListElement: any = [];
+  const offerCatalog: any = [];
   if (document.services) {
     document.services.forEach((item: any) => {
       itemListElement.push({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: `${item}`,
+          name: item,
         },
       });
     });
   }
-
-  if (document.c_entityCollection) {
-    document.c_entityCollection.forEach((item1: any, index: any) => {
-      item1.c_products.forEach((item: Product, index: any) => {
-        console.log(JSON.stringify(item));
-
-        productsList.push({
-          "@type": "ListItem",
-          position: parseInt(index) + 1,
-          item: {
-            "@type": "Product",
-            name: item.name,
-            image: item.photoGallery && item.photoGallery[0].image.url,
-            category: item.c_category && item.c_category,
-            sku: document.id,
-            aggregateRating: {
-              "@type": "AggregateRating",
-              bestRating: "5",
-              ratingCount: item.c_reviews,
-              ratingValue: item.c_rating,
-            },
-            offers: {
-              "@type": "Offer",
-              availability: "https://schema.org/InStock",
-              price: item.price && item.price.value,
-              priceCurrency: item.price && item.price.currencyCode,
-            },
+  if (document.c_fAQs) {
+    document.c_fAQs.map((itemS: any) =>
+      itemS.fAQs.map((item1: any) =>
+        faqsList.push({
+          "@type": "Question",
+          name: item1.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item1.answer,
           },
-        });
-      });
-    });
+        })
+      )
+    );
   }
-  console.log(JSON.stringify(productsList));
+
+  if (document.c_ourServices) {
+    document.c_ourServices.items.map((item: any) =>
+      offerCatalog.push({
+        "@type": "Offer",
+        itemListElement: {
+          "@type": "Service",
+          name: item.name,
+          description: item.description,
+        },
+      })
+    );
+  }
 
   return (
     <>
-      <JsonLd<ClothingStore>
+      <JsonLd<LocalBusiness>
         item={{
           "@context": "https://schema.org",
-          "@type": "ClothingStore",
+          "@type": "LocalBusiness",
           name,
           address: {
             "@type": "PostalAddress",
@@ -79,24 +78,18 @@ const Schema = (props: any) => {
           hasOfferCatalog: {
             "@type": "OfferCatalog",
             name: "Store services",
-            itemListElement: itemListElement,
+            itemListElement: offerCatalog,
           },
         }}
       />
-      <JsonLd<ItemList>
-        item={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          itemListElement: productsList,
-        }}
-      />
-      {/*  <JsonLd<FAQPage>
+
+      <JsonLd<FAQPage>
         item={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: faqsList,
         }}
-      /> */}
+      />
 
       {document.geocodedCoordinate && (
         <JsonLd<Place>
