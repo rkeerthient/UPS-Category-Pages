@@ -195,13 +195,9 @@ const Category: Template<TemplateRenderProps> = ({
                   >
                     <div>
                       {c_topDescription && (
-                        <div>
-                          {/* <LexicalRichText
-                            serializedAST={JSON.stringify(
-                              c_topDescription.json
-                            )}
-                          /> */}
-                        </div>
+                        <LexicalRichText
+                          serializedAST={JSON.stringify(c_topDescription.json)}
+                        />
                       )}
                       {services && (
                         <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] ">
