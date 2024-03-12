@@ -436,7 +436,7 @@ const Category: Template<TemplateRenderProps> = ({
             <div className="my-8">
               <MailingList />
             </div>
-            <OtherOffers />
+            {/* <OtherOffers /> */}
           </div>
         </div>
       </PageLayout>
