@@ -6,6 +6,7 @@ import {
   ItemList,
   OfferCatalog,
 } from "schema-dts";
+import getHtmlFromLexicalJSON from "./LexDeSerialise/LexToHTML";
 const Schema = (props: any) => {
   const { document } = props;
 
@@ -35,12 +36,13 @@ const Schema = (props: any) => {
           name: item1.question,
           acceptedAnswer: {
             "@type": "Answer",
-            text: item1.answer,
+            text: getHtmlFromLexicalJSON(JSON.stringify(item1.answer.json)),
           },
         })
       )
     );
   }
+  console.log(faqsList);
 
   if (document.c_ourServices) {
     document.c_ourServices.items.map((item: any) =>
@@ -49,7 +51,9 @@ const Schema = (props: any) => {
         itemListElement: {
           "@type": "Service",
           name: item.name,
-          description: item.description,
+          description: getHtmlFromLexicalJSON(
+            JSON.stringify(item.description.json)
+          ),
         },
       })
     );
