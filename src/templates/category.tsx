@@ -51,6 +51,7 @@ export const config: TemplateConfig = {
       "linkedLocation.timezone",
       "linkedLocation.hours",
       "linkedLocation.mainPhone",
+      "linkedLocation.geocodedCoordinate",
       "linkedLocation.fax",
       "linkedLocation.emails",
       "linkedLocation.c_dLocationDirectionsOrCrossStreets",

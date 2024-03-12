@@ -11,7 +11,7 @@ const Schema = (props: any) => {
   const { document } = props;
 
   const name = `${document.name}`;
-  const address = document.linkedLocation.address;
+  const address = document.linkedLocation;
   const telephone = document.linkedLocation.mainPhone;
   const description = document.decription;
   const faqsList: any = [];
@@ -42,49 +42,23 @@ const Schema = (props: any) => {
       )
     );
   }
-  console.log(faqsList);
 
   if (document.c_ourServices) {
-    document.c_ourServices.items.map((item: any) =>
-      offerCatalog.push({
+    document.c_ourServices.items.map((item: any) => {
+      return offerCatalog.push({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: item.name,
+          name: item.title,
+          image: item.image.url,
           description: getHtmlFromLexicalJSON(
             JSON.stringify(item.description.json)
           ),
         },
-      })
-    );
+      });
+    });
   }
-  console.log(
-    <JsonLd<LocalBusiness>
-      item={{
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        name,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: address.line1,
-          addressLocality: address.city,
-          addressRegion: address.region,
-          postalCode: address.postalCode,
-          addressCountry: address.countryCode,
-        },
-        description: description,
-        openingHours: document.hours
-          ? buildHoursSchema(document.hours)
-          : "Mo,Tu,We,Th 09:00-12:00",
-        telephone: telephone,
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Store services",
-          itemListElement: offerCatalog,
-        },
-      }}
-    />
-  );
+
   return (
     <>
       <JsonLd<LocalBusiness>
@@ -92,19 +66,36 @@ const Schema = (props: any) => {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name,
+          logo: "https://locations.theupsstore.com/permanent-b0b701/assets/images/logo.9bc0be0f.svg",
+          image: document.c_topImage.url,
+          brand: {
+            "@type": "Brand",
+            logo: "https://locations.theupsstore.com/permanent-b0b701/assets/images/logo.9bc0be0f.svg",
+            name: "The UPS Store",
+            url: "https://www.theupsstore.com/",
+          },
           address: {
             "@type": "PostalAddress",
             streetAddress: address.line1,
             addressLocality: address.city,
             addressRegion: address.region,
             postalCode: address.postalCode,
-            addressCountry: address.countryCode,
+            addressCountry: {
+              "@type": "Country",
+              name: address.countryCode,
+            },
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: document.linkedLocation.geocodedCoordinate.latitude,
+            longitude: document.linkedLocation.geocodedCoordinate.longitude,
           },
           description: description,
-          openingHours: document.hours
-            ? buildHoursSchema(document.hours)
+          openingHours: document.linkedLocation.hours
+            ? buildHoursSchema(document.linkedLocation.hours)
             : "Mo,Tu,We,Th 09:00-12:00",
           telephone: telephone,
+          email: `mailto:${document.linkedLocation.emails[0]}`,
           hasOfferCatalog: {
             "@type": "OfferCatalog",
             name: "Store services",
@@ -120,20 +111,6 @@ const Schema = (props: any) => {
           mainEntity: faqsList,
         }}
       />
-
-      {document.geocodedCoordinate && (
-        <JsonLd<Place>
-          item={{
-            "@context": "https://schema.org",
-            "@type": "Place",
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: document.geocodedCoordinate.latitude,
-              longitude: document.geocodedCoordinate.longitude,
-            },
-          }}
-        />
-      )}
     </>
   );
 };
