@@ -48,7 +48,7 @@ const Schema = (props: any) => {
     document.c_ourServices.items.map((item: any) =>
       offerCatalog.push({
         "@type": "Offer",
-        itemListElement: {
+        itemOffered: {
           "@type": "Service",
           name: item.name,
           description: getHtmlFromLexicalJSON(
@@ -58,7 +58,33 @@ const Schema = (props: any) => {
       })
     );
   }
-
+  console.log(
+    <JsonLd<LocalBusiness>
+      item={{
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: address.line1,
+          addressLocality: address.city,
+          addressRegion: address.region,
+          postalCode: address.postalCode,
+          addressCountry: address.countryCode,
+        },
+        description: description,
+        openingHours: document.hours
+          ? buildHoursSchema(document.hours)
+          : "Mo,Tu,We,Th 09:00-12:00",
+        telephone: telephone,
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Store services",
+          itemListElement: offerCatalog,
+        },
+      }}
+    />
+  );
   return (
     <>
       <JsonLd<LocalBusiness>
