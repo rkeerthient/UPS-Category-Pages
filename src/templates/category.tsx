@@ -196,11 +196,11 @@ const Category: Template<TemplateRenderProps> = ({
                     <div>
                       {c_topDescription && (
                         <div>
-                          <LexicalRichText
+                          {/* <LexicalRichText
                             serializedAST={JSON.stringify(
                               c_topDescription.json
                             )}
-                          />
+                          /> */}
                         </div>
                       )}
                       {services && (
