@@ -194,11 +194,7 @@ const Category: Template<TemplateRenderProps> = ({
                     style={{ boxShadow: "0 .125rem .375rem rgba(0,0,0,.15)" }}
                   >
                     <div>
-                      {c_topDescription && (
-                        <LexicalRichText
-                          serializedAST={JSON.stringify(c_topDescription.json)}
-                        />
-                      )}
+                      {c_topDescription && c_topDescription}
                       {services && (
                         <ul className="columns-2 space-y-1 list-disc pl-4 md:pl-8 marker:text-[#028198] ">
                           {services.map((item: string, index: number) => (
@@ -210,16 +206,8 @@ const Category: Template<TemplateRenderProps> = ({
                         <h3 className="text-lg my-2  font-medium">
                           {c_topTitle2}
                         </h3>
-                      )}{" "}
-                      <div>
-                        {c_topDescription2 && (
-                          <LexicalRichText
-                            serializedAST={JSON.stringify(
-                              c_topDescription2.json
-                            )}
-                          />
-                        )}
-                      </div>
+                      )}
+                      <div>{c_topDescription2 && c_topDescription2}</div>
                       {c_topCTA && (
                         <div className="!mt-4 w-fit flex gap-4 justify-start">
                           <a
