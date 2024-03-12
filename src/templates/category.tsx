@@ -210,16 +210,16 @@ const Category: Template<TemplateRenderProps> = ({
                         <h3 className="text-lg my-2  font-medium">
                           {c_topTitle2}
                         </h3>
-                      )}
-                      {c_topDescription2 && (
-                        <div>
+                      )}{" "}
+                      <div>
+                        {c_topDescription2 && (
                           <LexicalRichText
                             serializedAST={JSON.stringify(
                               c_topDescription2.json
                             )}
                           />
-                        </div>
-                      )}
+                        )}
+                      </div>
                       {c_topCTA && (
                         <div className="!mt-4 w-fit flex gap-4 justify-start">
                           <a
@@ -378,13 +378,11 @@ const Category: Template<TemplateRenderProps> = ({
                     <div className="text-4xl font-normal">{c_middleTitle}</div>
                     <div>
                       {c_middleDescription && (
-                        <div>
-                          <LexicalRichText
-                            serializedAST={JSON.stringify(
-                              c_middleDescription.json
-                            )}
-                          />
-                        </div>
+                        <LexicalRichText
+                          serializedAST={JSON.stringify(
+                            c_middleDescription.json
+                          )}
+                        />
                       )}
                     </div>
                     <div className="text-2xl">{c_middleTitle2}</div>
