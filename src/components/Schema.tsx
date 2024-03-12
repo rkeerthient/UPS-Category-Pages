@@ -94,7 +94,14 @@ const Schema = (props: any) => {
           openingHours: document.linkedLocation.hours
             ? buildHoursSchema(document.linkedLocation.hours)
             : "Mo,Tu,We,Th 09:00-12:00",
-          telephone: telephone,
+          telephone: telephone
+            .replace("+1", "")
+            .replace(/\D+/g, "")
+            .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"),
+          faxNumber: document.linkedLocation.fax
+            .replace("+1", "")
+            .replace(/\D+/g, "")
+            .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"),
           email: `mailto:${document.linkedLocation.emails[0]}`,
           hasOfferCatalog: {
             "@type": "OfferCatalog",
